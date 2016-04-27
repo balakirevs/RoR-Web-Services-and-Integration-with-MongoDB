@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @racer.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @racer.last_name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @racer.gender %>
+</p>
+
+<p>
+  <strong>Birth year:</strong>
+  <%= @racer.birth_year %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @racer.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @racer.state %>
+</p>
+
+<% if @racer.persisted? %>
+  <strong>Races:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Overall</th>
+        <th>Gender</th>
+        <th>Group</th>
+        <th>Results</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>  
+        <% @racer.races.each do |entry| %>
+        <td><%= entry.race_name %></td>
+        <td><%= entry.race_date %></td>
+        <td><%= entry.overall_place %></td>
+        <td><%= entry.gender_place %></td>
+        <td><%= entry.group_place %></td>
+        <td><%= link_to "Results", race_path(entry.race) %></td>
+      </tr> 
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to 'Edit', edit_racer_path(@racer) %> |
+<%= link_to 'Back', racers_path %>
